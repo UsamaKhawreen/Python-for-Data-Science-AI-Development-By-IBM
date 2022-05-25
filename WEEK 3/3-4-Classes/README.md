@@ -1,0 +1,563 @@
+<center>
+    <img src="https://cf-courses-data.s3.us.cloud-object-storage.appdomain.cloud/IBMDeveloperSkillsNetwork-PY0101EN-SkillsNetwork/IDSNlogo.png" width="300" alt="cognitiveclass.ai logo"  />
+</center>
+
+# Classes and Objects in Python
+
+Estimated time needed: **40** minutes
+
+## Objectives
+
+After completing this lab you will be able to:
+
+*   Work with classes and objects
+*   Identify and define attributes and methods
+
+
+<h2>Table of Contents</h2>
+<div class="alert alert-block alert-info" style="margin-top: 20px">
+    <ul>
+        <li>
+            <a href="https://#intro">Introduction to Classes and Objects</a>
+            <ul>
+                <li><a href="https://create/?utm_medium=Exinfluencer&utm_source=Exinfluencer&utm_content=000026UJ&utm_term=10006555&utm_id=NA-SkillsNetwork-Channel-SkillsNetworkCoursesIBMDeveloperSkillsNetworkPY0101ENSkillsNetwork19487395-2022-01-01">Creating a class</a></li>
+                <li><a href="https://instance/?utm_medium=Exinfluencer&utm_source=Exinfluencer&utm_content=000026UJ&utm_term=10006555&utm_id=NA-SkillsNetwork-Channel-SkillsNetworkCoursesIBMDeveloperSkillsNetworkPY0101ENSkillsNetwork19487395-2022-01-01">Instances of a Class: Objects and Attributes</a></li>
+                <li><a href="https://method/?utm_medium=Exinfluencer&utm_source=Exinfluencer&utm_content=000026UJ&utm_term=10006555&utm_id=NA-SkillsNetwork-Channel-SkillsNetworkCoursesIBMDeveloperSkillsNetworkPY0101ENSkillsNetwork19487395-2022-01-01">Methods</a></li>
+            </ul>
+        </li>
+        <li><a href="https://creating/?utm_medium=Exinfluencer&utm_source=Exinfluencer&utm_content=000026UJ&utm_term=10006555&utm_id=NA-SkillsNetwork-Channel-SkillsNetworkCoursesIBMDeveloperSkillsNetworkPY0101ENSkillsNetwork19487395-2022-01-01">Creating a class</a></li>
+        <li><a href="https://circle/?utm_medium=Exinfluencer&utm_source=Exinfluencer&utm_content=000026UJ&utm_term=10006555&utm_id=NA-SkillsNetwork-Channel-SkillsNetworkCoursesIBMDeveloperSkillsNetworkPY0101ENSkillsNetwork19487395-2022-01-01">Creating an instance of a class Circle</a></li>
+        <li><a href="https://rect/?utm_medium=Exinfluencer&utm_source=Exinfluencer&utm_content=000026UJ&utm_term=10006555&utm_id=NA-SkillsNetwork-Channel-SkillsNetworkCoursesIBMDeveloperSkillsNetworkPY0101ENSkillsNetwork19487395-2022-01-01">The Rectangle Class</a></li>
+    </ul>
+
+</div>
+
+<hr>
+
+
+<h2 id="intro">Introduction to Classes and Objects</h2>
+
+
+<h3>Creating a Class</h3>
+
+
+The first step in creating a class is giving it a name. In this notebook, we will create two classes: Circle and Rectangle. We need to determine all the data that make up that class, which we call <em>attributes</em>. Think about this step as creating a blue print that we will use to create objects. In figure 1 we see two classes, Circle and Rectangle. Each has their attributes, which are variables. The class Circle has the attribute radius and color, while the Rectangle class has the attribute height and width. Let’s use the visual examples of these shapes before we get to the code, as this will help you get accustomed to the vocabulary.
+
+
+<img src="https://cf-courses-data.s3.us.cloud-object-storage.appdomain.cloud/IBMDeveloperSkillsNetwork-PY0101EN-SkillsNetwork/labs/Module%203/images/ClassesClass.png" width="500" />
+
+
+<i>Figure 1: Classes circle and rectangle, and each has their own attributes. The class Circle has the attribute radius and colour, the class Rectangle has the attributes height and width.</i>
+
+
+<h3 id="instance">Instances of a Class: Objects and Attributes</h3>
+
+
+An instance of an object is the realisation of a class, and in Figure 2 we see three instances of the class circle. We give each object a name: red circle, yellow circle, and green circle. Each object has different attributes, so let's focus on the color attribute for each object.
+
+
+<img src="https://cf-courses-data.s3.us.cloud-object-storage.appdomain.cloud/IBMDeveloperSkillsNetwork-PY0101EN-SkillsNetwork/labs/Module%203/images/ClassesObj.png" width="500" />
+
+
+<i>Figure 2: Three instances of the class Circle, or three objects of type Circle.</i>
+
+
+The colour attribute for the red Circle is the colour red, for the green Circle object the colour attribute is green, and for the yellow Circle the colour attribute is yellow.
+
+
+<h3 id="method">Methods</h3>
+
+
+Methods give you a way to change or interact with the object; they are functions that interact with objects. For example, let’s say we would like to increase the radius of a circle by a specified amount. We can create a method called **add_radius(r)** that increases the radius by **r**. This is shown in figure 3, where after applying the method to the "orange circle object", the radius of the object increases accordingly. The “dot” notation means to apply the method to the object, which is essentially applying a function to the information in the object.
+
+
+<img src="https://cf-courses-data.s3.us.cloud-object-storage.appdomain.cloud/IBMDeveloperSkillsNetwork-PY0101EN-SkillsNetwork/labs/Module%203/images/ClassesMethod.png" width="500" /> 
+
+
+<i>Figure 3: Applying the method “add_radius” to the object orange circle object.</i>
+
+
+<hr>
+
+
+<h2 id="creating">Creating a Class</h2>
+
+
+Now we are going to create a class Circle, but first, we are going to import a library to draw the objects:
+
+
+
+```python
+# Import the library
+
+import matplotlib.pyplot as plt
+%matplotlib inline  
+```
+
+The first step in creating your own class is to use the <code>class</code> keyword, then the name of the class as shown in Figure 4. In this course the class parent will always be object:
+
+
+<img src="https://cf-courses-data.s3.us.cloud-object-storage.appdomain.cloud/IBMDeveloperSkillsNetwork-PY0101EN-SkillsNetwork/labs/Module%203/images/ClassesDefine.png" width="400" />
+
+
+<i>Figure 4: Creating a class Circle.</i>
+
+
+The next step is a special method called a constructor <code>\__init\_\_</code>, which is used to initialize the object. The inputs are data attributes. The term <code>self</code> contains all the attributes in the set. For example the <code>self.color</code> gives the value of the attribute color and <code>self.radius</code> will give you the radius of the object. We also have the method <code>add_radius()</code> with the parameter <code>r</code>, the method adds the value of <code>r</code> to the attribute radius. To access the radius we use the syntax <code>self.radius</code>. The labeled syntax is summarized in Figure 5:
+
+
+<img src="https://cf-courses-data.s3.us.cloud-object-storage.appdomain.cloud/IBMDeveloperSkillsNetwork-PY0101EN-SkillsNetwork/labs/Module%203/images/ClassesCircle.png" width="600" />
+
+
+<i>Figure 5: Labeled syntax of the object circle.</i>
+
+
+The actual object is shown below. We include the method <code>drawCircle</code> to display the image of a circle. We set the default radius to 3 and the default colour to blue:
+
+
+
+```python
+# Create a class Circle
+
+class Circle(object):
+    
+    # Constructor
+    def __init__(self, radius=3, color='blue'):
+        self.radius = radius
+        self.color = color 
+    
+    # Method
+    def add_radius(self, r):
+        self.radius = self.radius + r
+        return(self.radius)
+    
+    # Method
+    def drawCircle(self):
+        plt.gca().add_patch(plt.Circle((0, 0), radius=self.radius, fc=self.color))
+        plt.axis('scaled')
+        plt.show()  
+```
+
+<hr>
+
+
+<h2 id="circle">Creating an instance of a class Circle</h2>
+
+
+Let’s create the object <code>RedCircle</code> of type Circle to do the following:
+
+
+
+```python
+# Create an object RedCircle
+
+RedCircle = Circle(10, 'red')
+```
+
+We can use the <code>dir</code> command to get a list of the object's methods. Many of them are default Python methods.
+
+
+
+```python
+# Find out the methods can be used on the object RedCircle
+
+dir(RedCircle)
+```
+
+We can look at the data attributes of the object:
+
+
+
+```python
+# Print the object attribute radius
+
+RedCircle.radius
+```
+
+
+```python
+# Print the object attribute color
+
+RedCircle.color
+```
+
+We can change the object's data attributes:
+
+
+
+```python
+# Set the object attribute radius
+
+RedCircle.radius = 1
+RedCircle.radius
+```
+
+We can draw the object by using the method <code>drawCircle()</code>:
+
+
+
+```python
+# Call the method drawCircle
+
+RedCircle.drawCircle()
+```
+
+We can increase the radius of the circle by applying the method <code>add_radius()</code>. Let's increases the radius by 2 and then by 5:
+
+
+
+```python
+# Use method to change the object attribute radius
+
+print('Radius of object:',RedCircle.radius)
+RedCircle.add_radius(2)
+print('Radius of object of after applying the method add_radius(2):',RedCircle.radius)
+RedCircle.add_radius(5)
+print('Radius of object of after applying the method add_radius(5):',RedCircle.radius)
+```
+
+Let’s create a blue circle. As the default colour is blue, all we have to do is specify what the radius is:
+
+
+
+```python
+# Create a blue circle with a given radius
+
+BlueCircle = Circle(radius=100)
+```
+
+As before, we can access the attributes of the instance of the class by using the dot notation:
+
+
+
+```python
+# Print the object attribute radius
+
+BlueCircle.radius
+```
+
+
+```python
+# Print the object attribute color
+
+BlueCircle.color
+```
+
+We can draw the object by using the method <code>drawCircle()</code>:
+
+
+
+```python
+# Call the method drawCircle
+
+BlueCircle.drawCircle()
+```
+
+Compare the x and y axis of the figure to the figure for <code>RedCircle</code>; they are different.
+
+
+<hr>
+
+
+<h2 id="rect">The Rectangle Class</h2>
+
+
+Let's create a class rectangle with the attributes of height, width, and color. We will only add the method to draw the rectangle object:
+
+
+
+```python
+# Create a new Rectangle class for creating a rectangle object
+
+class Rectangle(object):
+    
+    # Constructor
+    def __init__(self, width=2, height=3, color='r'):
+        self.height = height 
+        self.width = width
+        self.color = color
+    
+    # Method
+    def drawRectangle(self):
+        plt.gca().add_patch(plt.Rectangle((0, 0), self.width, self.height ,fc=self.color))
+        plt.axis('scaled')
+        plt.show()
+        
+```
+
+Let’s create the object <code>SkinnyBlueRectangle</code> of type Rectangle. Its width will be 2 and height will be 3, and the color will be blue:
+
+
+
+```python
+# Create a new object rectangle
+
+SkinnyBlueRectangle = Rectangle(2, 3, 'blue')
+```
+
+As before we can access the attributes of the instance of the class by using the dot notation:
+
+
+
+```python
+# Print the object attribute height
+
+SkinnyBlueRectangle.height 
+```
+
+
+```python
+# Print the object attribute width
+
+SkinnyBlueRectangle.width
+```
+
+
+```python
+# Print the object attribute color
+
+SkinnyBlueRectangle.color
+```
+
+We can draw the object:
+
+
+
+```python
+# Use the drawRectangle method to draw the shape
+
+SkinnyBlueRectangle.drawRectangle()
+```
+
+Let’s create the object <code>FatYellowRectangle</code> of type Rectangle:
+
+
+
+```python
+# Create a new object rectangle
+
+FatYellowRectangle = Rectangle(20, 5, 'yellow')
+```
+
+We can access the attributes of the instance of the class by using the dot notation:
+
+
+
+```python
+# Print the object attribute height
+
+FatYellowRectangle.height 
+```
+
+
+```python
+# Print the object attribute width
+
+FatYellowRectangle.width
+```
+
+
+```python
+# Print the object attribute color
+
+FatYellowRectangle.color
+```
+
+We can draw the object:
+
+
+
+```python
+# Use the drawRectangle method to draw the shape
+
+FatYellowRectangle.drawRectangle()
+```
+
+<hr>
+
+
+<h2 id="rect">Exercises</h2>
+
+
+<h4> Text Analysis </h4>
+
+
+You have been recruited by your friend, a linguistics enthusiast, to create a utility tool that can perform analysis on a given piece of text. Complete the class
+'analysedText' with the following methods -
+
+<ul>
+    <li> Constructor (__init__) - This method should take the argument <code>text</code>, make it lower case, and remove all punctuation.  Assume only the following punctuation is used: period (.), exclamation mark (!), comma (,) and question mark (?). Assign this newly formatted text to a new attribute called <code>fmtText</code>.
+    <li> freqAll - This method should create and <strong>return</strong> dictionary of all unique words in the text, along with the number of times they occur in the text. Each key in the dictionary should be the unique word appearing in the text and the associated value should be the number of times it occurs in the text. Create this dictionary from the <code>fmtText</code> attribute.
+    <li> freqOf - This method should take a word as an argument and <strong>return</strong> the number of occurrences of that word in <code>fmtText</code>.
+</ul>
+ The skeleton code has been given to you. Docstrings can be ignored for the purpose of the exercise. <br>
+ <i> Hint: Some useful functions are <code>replace()</code>, <code>lower()</code>, <code>split()</code>, <code>count()</code> </i><br>
+
+
+<details><summary>Hint for implementing Constructor</summary>
+
+The <code>lower()</code> function converts all characters in the string to lowercase.
+
+The <code>replace()</code> function takes two arguments: the text to search for and the text to replace it with. Try calling this function for each punctuation you want to remove and replace it with a blank character, <code>''</code>
+
+You can define a class attribute and assign it a value with the following generic recipe: <code>self.attribute_name = value</code>
+
+</details>
+
+
+<details><summary>Hint for implementing freqAll</summary>
+
+You can create a list of all words in <code>fmtText</code> using the <code>split()</code> and by using the whitespace character, <code>' '</code> as the delimiter.
+
+Using <code>set()</code> with a list as the argument will return a set with all the unique elements in the list. Try iterating over the elements in this set to create the keys for a dictionary. The <code>count()</code> function will return the number of occurrences of the argument in list. For example, <code>\["hi", "hi", "hello"].count("hi")</code> will return 2. This can be used to set the values for each key-value pair in the dictionary.
+
+</details>
+
+
+<details><summary>Hint for implementing freqOf</summary>
+
+Try calling the <code>freqAll</code> method you implemented above and assign it to a variable. You will now have a dictionary with the unique words that appear in fmtText as the keys, and the number of times they appear as the value.
+
+You can use this dictionary to return the number of occurrences of the word that was given as an argument to the <code>freqOf</code> method.
+
+If the word given as an argument does not appear in the text, return 0. You can check if a string is a key in the dictionary using the following code recipe: <code>if item in my_dictionary:</code>
+
+</details>
+
+
+
+```python
+class analysedText(object):
+    
+    def __init__ (self, text):
+
+        # TODO: Remove the punctuation from <text> and make it lower case.
+
+        # TODO: Assign the formatted text to a new attribute called "fmtText"
+        
+        pass 
+    
+    def freqAll(self):    
+
+        # TODO: Split the text into a list of words  
+
+        # TODO: Create a dictionary with the unique words in the text as keys
+        # and the number of times they occur in the text as values
+      
+        pass # return the created dictionary
+    
+    def freqOf(self, word):
+
+        # TODO: return the number of occurrences of <word> in <fmtText>
+
+        pass
+        
+```
+
+You can run the code cell below to test your functions to ensure they are working correctly. First execute the code cell in which you implemented your solution, then execute the code cell to test your implementation.
+
+
+
+```python
+import sys
+
+sampleMap = {'eirmod': 1,'sed': 1, 'amet': 2, 'diam': 5, 'consetetur': 1, 'labore': 1, 'tempor': 1, 'dolor': 1, 'magna': 2, 'et': 3, 'nonumy': 1, 'ipsum': 1, 'lorem': 2}
+
+def testMsg(passed):
+    if passed:
+       return 'Test Passed'
+    else :
+       return 'Test Failed'
+
+print("Constructor: ")
+try:
+    samplePassage = analysedText("Lorem ipsum dolor! diam amet, consetetur Lorem magna. sed diam nonumy eirmod tempor. diam et labore? et diam magna. et diam amet.")
+    print(testMsg(samplePassage.fmtText == "lorem ipsum dolor diam amet consetetur lorem magna sed diam nonumy eirmod tempor diam et labore et diam magna et diam amet"))
+except:
+    print("Error detected. Recheck your function " )
+print("freqAll: ")
+try:
+    wordMap = samplePassage.freqAll()
+    print(testMsg(wordMap==sampleMap))
+except:
+    print("Error detected. Recheck your function " )
+print("freqOf: ")
+try:
+    passed = True
+    for word in sampleMap:
+        if samplePassage.freqOf(word) != sampleMap[word]:
+            passed = False
+            break
+    print(testMsg(passed))
+    
+except:
+    print("Error detected. Recheck your function  " )
+    
+```
+
+<details><summary>Click here for the solution</summary>
+
+```python
+class analysedText(object):
+    
+    def __init__ (self, text):
+        # remove punctuation
+        formattedText = text.replace('.','').replace('!','').replace('?','').replace(',','')
+        
+        # make text lowercase
+        formattedText = formattedText.lower()
+        
+        self.fmtText = formattedText
+        
+    def freqAll(self):        
+        # split text into words
+        wordList = self.fmtText.split(' ')
+        
+        # Create dictionary
+        freqMap = {}
+        for word in set(wordList): # use set to remove duplicates in list
+            freqMap[word] = wordList.count(word)
+        
+        return freqMap
+    
+    def freqOf(self,word):
+        # get frequency map
+        freqDict = self.freqAll()
+        
+        if word in freqDict:
+            return freqDict[word]
+        else:
+            return 0
+    
+```
+
+</details>
+
+
+<hr>
+<h2>The last exercise!</h2>
+<p>Congratulations, you have completed your first lesson and hands-on lab in Python. 
+<hr>
+
+
+## Author
+
+<a href="https://www.linkedin.com/in/joseph-s-50398b136/?utm_medium=Exinfluencer&utm_source=Exinfluencer&utm_content=000026UJ&utm_term=10006555&utm_id=NA-SkillsNetwork-Channel-SkillsNetworkCoursesIBMDeveloperSkillsNetworkPY0101ENSkillsNetwork19487395-2022-01-01" target="_blank">Joseph Santarcangelo</a>
+
+## Other contributors
+
+<a href="https://www.linkedin.com/in/jiahui-mavis-zhou-a4537814a?utm_medium=Exinfluencer&utm_source=Exinfluencer&utm_content=000026UJ&utm_term=10006555&utm_id=NA-SkillsNetwork-Channel-SkillsNetworkCoursesIBMDeveloperSkillsNetworkPY0101ENSkillsNetwork19487395-2022-01-01">Mavis Zhou</a>
+
+## Change Log
+
+| Date (YYYY-MM-DD) | Version | Changed By | Change Description                 |
+| ----------------- | ------- | ---------- | ---------------------------------- |
+| 2022-01-10        | 2.1     | Malika     | Removed the readme for GitShare    |
+| 2020-08-26        | 2.0     | Lavanya    | Moved lab to course repo in GitLab |
+|                   |         |            |                                    |
+|                   |         |            |                                    |
+
+<hr/>
+
+## <h3 align="center"> © IBM Corporation 2020. All rights reserved. <h3/>
+
